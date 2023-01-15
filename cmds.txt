@@ -1,0 +1,12 @@
+//search for docker images:
+ docker search
+// pulling a docker image: 
+ docker pull
+//  and to specify a specific version:
+ docker pull httpd:2.4
+//stop and run container:
+ docker start [Argument] | docker stop [Argument]
+// running a docker container:
+ docker run -d []
+// remove docker imgs & containers
+     docker 
