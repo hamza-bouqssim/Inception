@@ -1,9 +1,14 @@
-FROM mariadb:10.9.4
+FROM debian:buster
 
-RUN sudo apt-get update && sudo apt-get install mariadb-server
 
-COPY ./tools/50-server.conf /etc/mysql/mariadb.conf.d
+RUN apt-get update -y && apt-get install mariadb-server -y
 
-COPY .tools/script.sh /
+COPY ./tools/50-server.conf /etc/mysql/mariadb.conf.d/
 
-CMD ["./script.sh"]
+
+COPY ./tools/script.sh /
+
+RUN chmod +x ./script.sh
+RUN ./script.sh
+
+ENTRYPOINT ["mysqld"]

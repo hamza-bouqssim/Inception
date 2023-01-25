@@ -1,14 +1,24 @@
 #!/bin/bash
 
-echo -e "\033[1;31mStarting the MariaDB service ...\033[0m"
-sleep 2
+#COLORS:------------------------------
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+#------------------------------------
 
-cat > my_db.sql << EOF
-CREATE DATABASE IF NOT EXISTS $my_db_name ;
-CREATE USER IF NOT EXISTS '$my_db_user'@'%' IDENTIFIED BY '$my_db_pwd' ;
-GRANT ALL PRIVILEGES ON $my_db_name.* TO '$my_db_user'@'%' ;
-ALTER USER 'root'@'localhost' IDENTIFIED BY '0000' ;
+mysql_install_db
+
+cat << EOF > mydb.sql
+CREATE DATABASE IF NOT EXISTS wordpress ;
+CREATE USER IF NOT EXISTS 'hamza'@'%' IDENTIFIED BY 'hamza123' ;
+GRANT ALL PRIVILEGES ON wordpress.* TO 'hamza'@'%' ;
+ALTER USER 'root'@'localhost' IDENTIFIED BY '12345' ;
 FLUSH PRIVILEGES;
 EOF
 
-mysql < my_db.sql
+service mysql restart
+mysql < mydb.sql

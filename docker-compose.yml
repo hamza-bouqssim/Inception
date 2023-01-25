@@ -1,18 +1,18 @@
 version: '3'
 services:
-  nginx:
-    build: /Users/hbouqssi/Desktop/Inception/services/NGINX
-  wordpress:
-    build: /Users/hbouqssi/Desktop/Inception/services/Wordpress
-    ports:
-      - 9000:9000
-    depends_on:
-      - mariadb
-    environment:
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: "1234"
-      WORDPRESS_DB_NAME: wordpress
+  # nginx:
+  #   build: /Users/hbouqssi/Desktop/Inception/services/NGINX
+  # wordpress:
+  #   build: /Users/hbouqssi/Desktop/Inception/services/Wordpress
+  #   ports:
+  #     - 9000:9000
+  #   depends_on:
+  #     - mariadb
+  #   environment:
+  #     WORDPRESS_DB_HOST: mariadb
+  #     WORDPRESS_DB_USER: root
+  #     WORDPRESS_DB_PASSWORD: "1234"
+  #     WORDPRESS_DB_NAME: wordpress
   mariadb:
     build: /Users/hbouqssi/Desktop/Inception/services/MariaDB
     environment:
