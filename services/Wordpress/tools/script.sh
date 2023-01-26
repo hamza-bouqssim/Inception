@@ -9,10 +9,15 @@ Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 #------------------------------------
 
-echo "${Red} Starting Configuring WordPress"
-sleep 1
- tar -xzvf /var/www/html/latest.tar.gz
- rm /var/www/html/latest.tar.gz
- cp -r /var/www/html/wordpress/* /var/www/html
- rm -rf /var/www/html/wordpress
- cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+echo "Installing Wordpress ..."
+
+sudo mkdir -p /srv/www
+sudo chown www-data: /srv/www
+curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+
+echo "Configuring Wordpress"
+
+rm -rf /srv/www/wordpress/wp-config.php
+cp /home/jugurtha/Desktop/Inception/services/Wordpress/tools/wp-config.php /srv/www/wordpress/
+
+echo ""
