@@ -2,9 +2,13 @@
 
 echo "Installing Wordpress ..."
 
-sudo mkdir -p /srv/www
-sudo chown www-data: /srv/www
-curl https://wordpress.org/latest.tar.gz | sudo -u www-data tar zx -C /srv/www
+mkdir -p /srv/www
+cd /srv/www
+chown www-data: /srv/www
+curl http://wordpress.org/latest.tar.gz
+tar xfz latest.tar.gz
+rm -rf latest.tar.gz
+
 
 
 echo "Configuring Wordpress ..."
@@ -17,4 +21,5 @@ echo  "Install WP-CLI ..."
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
-sudo mv wp-cli.phar /usr/local/bin/wp
+mv wp-cli.phar /usr/local/bin/wp
+exec "$@"
