@@ -1,25 +1,19 @@
 #!bin/bash
 
-echo "Installing Wordpress ..."
-
-mkdir -p /srv/www
-cd /srv/www
-chown www-data: /srv/www
-curl http://wordpress.org/latest.tar.gz
-tar xfz latest.tar.gz
-rm -rf latest.tar.gz
-
-
-
-echo "Configuring Wordpress ..."
-
-rm -rf /srv/www/wordpress/wp-config-sample.php
-mv /wp-config.php /srv/www/wordpress/
-
-
-echo  "Install WP-CLI ..."
+echo "Installing Wp-cli ..."
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
-mv wp-cli.phar /usr/local/bin/wp
+mv /wp-cli.phar /usr/local/bin/wp
+rm -rf wp-cli.phar
+mkdir /var/www/ && mkdir /var/www/html &&  cd /var/www/html/
+wp core download --allow-root
+mv wp-config-sample.php wp-config.php
+wp config set DB_NAME "wordpress" --allow-root
+wp config set DB_USER "hbouqssi" --allow-root
+wp config set DB_PASSWORD "0000" --allow-root
+while true
+do 
+sleep 1
+done
 exec "$@"
