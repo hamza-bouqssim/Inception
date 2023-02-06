@@ -12,8 +12,4 @@ mv wp-config-sample.php wp-config.php
 wp config set DB_NAME "wordpress" --allow-root
 wp config set DB_USER "hbouqssi" --allow-root
 wp config set DB_PASSWORD "0000" --allow-root
-while true
-do 
-sleep 1
-done
 exec "$@"
