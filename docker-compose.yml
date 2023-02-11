@@ -5,11 +5,11 @@ services:
   mariadb:
     build: ./services/MariaDB
     container_name: mariadb
-    ports:
-      - 3306:3306
     restart: always
     volumes:
       - mariadb_v:/var/lib/mysql
+    env_file:
+      - .env
 
   nginx:
     build: /home/jugurtha/Desktop/Inception/services/NGINX
@@ -17,12 +17,16 @@ services:
     ports:
       - 443:443
     restart: always
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_v:/var/www/html
 
   wordpress:
     build: /home/jugurtha/Desktop/Inception/services/Wordpress
     container_name: wordpress
     ports:
-      - 9000:9000
+      - "9000:9000"
     depends_on:
       - mariadb
     restart: always
