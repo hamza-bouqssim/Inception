@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt update -y
-RUN apt install php-fpm php-mysql -y
+RUN apt install php7.3-fpm php-mysql -y
 RUN apt install curl -y
 
 EXPOSE 9000

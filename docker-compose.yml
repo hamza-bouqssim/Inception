@@ -5,15 +5,21 @@ services:
   mariadb:
     build: ./services/MariaDB
     container_name: mariadb
+    image: mariadb:inception
     restart: always
+    ports:
+      - 3306:3306
     volumes:
       - mariadb_v:/var/lib/mysql
     env_file:
       - .env
+    networks:
+     - inception
 
   nginx:
-    build: /home/jugurtha/Desktop/Inception/services/NGINX
+    build: ./services/NGINX
     container_name: nginx
+    image: nginx:inception
     ports:
       - 443:443
     restart: always
@@ -21,10 +27,15 @@ services:
       - wordpress
     volumes:
       - wordpress_v:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - inception
 
   wordpress:
-    build: /home/jugurtha/Desktop/Inception/services/Wordpress
+    build: ./services/Wordpress
     container_name: wordpress
+    image: wordpress:inception
     ports:
       - "9000:9000"
     depends_on:
@@ -32,6 +43,10 @@ services:
     restart: always
     volumes:
       - wordpress_v:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - inception
 
   
 
@@ -39,17 +54,16 @@ volumes:
   wordpress_v:
     driver: local
     driver_opts:
-      device: /home/jugurtha/Desktop/data/wp
+      device: /Users/hbouqssi/Desktop/data/Wp
       o: bind
       type: none
   mariadb_v:
     driver: local
     driver_opts:
-      device: /home/jugurtha/Desktop/data/mr
+      device: /Users/hbouqssi/Desktop/data/Db
       o: bind
       type: none
 
-# networks:
-#   inception:
-#     name: inception
-#     driver: bridge
+networks:
+  inception:
+   name: inception
