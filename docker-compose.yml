@@ -60,6 +60,17 @@ services:
     restart: always
     networks:
       - inception
+
+  redis:
+    build: .services/redis
+    container_name: redis
+    image: redis:inception
+    depends_on: wordpress
+    restart: always
+    volumes:
+      - wordpress_v:/var/www/html
+    networks:
+      - inception
   
 
 volumes:
