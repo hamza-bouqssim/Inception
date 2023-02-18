@@ -32,6 +32,7 @@ services:
     networks:
       - inception
 
+
   wordpress:
     build: ./services/Wordpress
     container_name: wordpress
@@ -47,7 +48,18 @@ services:
       - .env
     networks:
       - inception
-
+  
+  adminer:
+    build: ./services/adminer
+    container_name: adminer
+    image: adminer:inception
+    ports:
+      - 8080:8080
+    depends_on:
+      - mariadb
+    restart: always
+    networks:
+      - inception
   
 
 volumes:
