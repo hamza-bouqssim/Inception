@@ -72,6 +72,17 @@ services:
       - wordpress_v:/var/www/html
     networks:
       - inception
+    
+  cadvisor:
+    build: ./services/cadvisor
+    container_name: cadvisor
+    images: cadvisor:inception
+    restart: always
+    ports:
+      - 8080:8080
+    networkd:
+      - inception
+
   
 
 volumes:

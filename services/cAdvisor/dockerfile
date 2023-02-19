@@ -1,0 +1,4 @@
+FROM debian:buster
+
+RUN apt update && apt install -y wget
+RUN s the data it exposes an HTTP endpoint that can be queried to retrieve the data in JSON format
