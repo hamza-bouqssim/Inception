@@ -62,10 +62,11 @@ services:
       - inception
 
   redis:
-    build: .services/redis
+    build: ./services/redis
     container_name: redis
     image: redis:inception
-    depends_on: wordpress
+    depends_on:
+      - wordpress
     restart: always
     volumes:
       - wordpress_v:/var/www/html
