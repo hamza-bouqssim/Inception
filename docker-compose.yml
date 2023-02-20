@@ -72,21 +72,22 @@ services:
       - wordpress_v:/var/www/html
     networks:
       - inception
-    
+
   cadvisor:
     build: ./services/cadvisor
+    image: cadvisor
     container_name: cadvisor
-    image: cadvisor:inception
     restart: always
-    ports:
-      - 7070:7070
     volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:rw"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
     networks:
-      - inception
+        - inception
+    ports:
+      - "7000:7000"
 
   
 
