@@ -89,6 +89,16 @@ services:
     ports:
       - "7000:7000"
 
+  static_ws:
+    build: ./services/static_ws
+    container_name: static_ws
+    image: static_ws
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - inception
+
   
 
 volumes:
