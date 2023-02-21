@@ -3,58 +3,58 @@ version: '3.5'
 services:
 
   mariadb:
-    build: ./services/MariaDB
+    build: ./requirements/MariaDB
     container_name: mariadb
     image: mariadb:inception
     restart: always
     ports:
-      - 3306:3306
+      - '3306:3306'
     volumes:
       - mariadb_v:/var/lib/mysql
     env_file:
-      - .env
+      - ../.env
     networks:
      - inception
 
   nginx:
-    build: ./services/NGINX
+    build: ./requirements/NGINX
     container_name: nginx
     image: nginx:inception
     ports:
-      - 443:443
+      - '443:443'
     restart: always
     depends_on:
       - wordpress
     volumes:
       - wordpress_v:/var/www/html
     env_file:
-      - .env
+      - ../.env
     networks:
       - inception
 
 
   wordpress:
-    build: ./services/Wordpress
+    build: ./requirements/Wordpress
     container_name: wordpress
     image: wordpress:inception
     ports:
-      - "9000:9000"
+      - '9000:9000'
     depends_on:
       - mariadb
     restart: always
     volumes:
       - wordpress_v:/var/www/html
     env_file:
-      - .env
+      - ../.env
     networks:
       - inception
   
   adminer:
-    build: ./services/adminer
+    build: ./requirements/bonus/adminer
     container_name: adminer
     image: adminer:inception
     ports:
-      - 8080:8080
+      - '8080:8080'
     depends_on:
       - mariadb
     restart: always
@@ -62,7 +62,7 @@ services:
       - inception
 
   redis:
-    build: ./services/redis
+    build: ./requirements/bonus/redis
     container_name: redis
     image: redis:inception
     depends_on:
@@ -74,7 +74,7 @@ services:
       - inception
 
   cadvisor:
-    build: ./services/cadvisor
+    build: ./requirements/bonus/cadvisor
     image: cadvisor
     container_name: cadvisor
     restart: always
@@ -87,15 +87,15 @@ services:
     networks:
         - inception
     ports:
-      - "7000:7000"
+      - '7000:7000'
 
   static_ws:
-    build: ./services/static_ws
+    build: ./requirements/bonus/static_ws
     container_name: static_ws
     image: static_ws
     restart: always
     ports:
-      - 80:80
+      - '80:80'
     networks:
       - inception
 
