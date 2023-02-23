@@ -105,13 +105,13 @@ volumes:
   wordpress_v:
     driver: local
     driver_opts:
-      device: /home/hamza/Desktop/data/wp
+      device: /home/hamza/data/wp # don't forget to chane this fucking path to /home/hbouqssi/data
       o: bind
       type: none
   mariadb_v:
     driver: local
     driver_opts:
-      device: /home/hamza/Desktop/data/db
+      device: /home/hamza/data/db # don't forget to chane this fucking path to /home/hbouqssi/data
       o: bind
       type: none
 
