@@ -3,7 +3,7 @@ version: '3.5'
 services:
 
   mariadb:
-    build: ./requirements/MariaDB
+    build: ./requirements/mariadb
     container_name: mariadb
     image: mariadb:inception
     restart: always
@@ -17,7 +17,7 @@ services:
      - inception
 
   nginx:
-    build: ./requirements/NGINX
+    build: ./requirements/nginx
     container_name: nginx
     image: nginx:inception
     ports:
@@ -34,7 +34,7 @@ services:
 
 
   wordpress:
-    build: ./requirements/Wordpress
+    build: ./requirements/wordpress
     container_name: wordpress
     image: wordpress:inception
     ports:
@@ -105,13 +105,13 @@ volumes:
   wordpress_v:
     driver: local
     driver_opts:
-      device: /Users/hbouqssi/Desktop/data/Wp
+      device: /home/hamza/Desktop/data/wp
       o: bind
       type: none
   mariadb_v:
     driver: local
     driver_opts:
-      device: /Users/hbouqssi/Desktop/data/Db
+      device: /home/hamza/Desktop/data/db
       o: bind
       type: none
 

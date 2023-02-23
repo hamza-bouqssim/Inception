@@ -22,7 +22,7 @@ wp config set WP_REDIS_HOST "redis" --allow-root
 wp config set WP_REDIS_PORT "6379" --allow-root
 wp config set WP_CACHE "true" --allow-root
 # wp config set --allow-root WP_CACHE_KEY_SALT $DOMAIN_NAME
-wp core install  -path=/var/www/html --url="localhost" --title="kradagh" --admin_user="supervisor" --admin_password=0000 --admin_email="hamzaboukssim6@gmail.com" --allow-root
+wp core install   --url="localhost" --title="kradagh" --admin_user="supervisor" --admin_password=0000 --admin_email="hamzaboukssim6@gmail.com" --allow-root
 wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
 wp wp plugin install redis-cache --activate --allow-root
 wp redis enable --allow-root
