@@ -10,7 +10,7 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - mariadb_v:/var/lib/mysql
+      - mariadb:/var/lib/mysql
     env_file:
       - ../.env
     networks:
@@ -26,7 +26,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress_v:/var/www/html
+      - wordpress:/var/www/html
     env_file:
       - ../.env
     networks:
@@ -43,7 +43,7 @@ services:
       - mariadb
     restart: always
     volumes:
-      - wordpress_v:/var/www/html
+      - wordpress:/var/www/html
     env_file:
       - ../.env
     networks:
@@ -102,16 +102,16 @@ services:
   
 
 volumes:
-  wordpress_v:
+  wordpress:
     driver: local
     driver_opts:
-      device: /home/hamza/data/wp # don't forget to chane this fucking path to /home/hbouqssi/data
+      device: /home/hbouqssi/data/wp
       o: bind
       type: none
-  mariadb_v:
+  mariadb:
     driver: local
     driver_opts:
-      device: /home/hamza/data/db # don't forget to chane this fucking path to /home/hbouqssi/data
+      device: /home/hbouqssi/data/db
       o: bind
       type: none
 
