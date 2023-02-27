@@ -8,9 +8,9 @@ services:
     image: mariadb:inception
     restart: always
     ports:
-      - '3306:3306'
+      - '3306'
     volumes:
-      - mariadb:/var/lib/mysql
+      - DB:/var/lib/mysql
     env_file:
       - ../.env
     networks:
@@ -26,7 +26,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress:/var/www/html
+      - WP:/var/www/html
     env_file:
       - ../.env
     networks:
@@ -38,12 +38,12 @@ services:
     container_name: wordpress
     image: wordpress:inception
     ports:
-      - '9000:9000'
+      - '9000'
     depends_on:
       - mariadb
     restart: always
     volumes:
-      - wordpress:/var/www/html
+      - WP:/var/www/html
     env_file:
       - ../.env
     networks:
@@ -69,7 +69,7 @@ services:
       - wordpress
     restart: always
     volumes:
-      - wordpress_v:/var/www/html
+      - WP:/var/www/html
     networks:
       - inception
 
@@ -102,18 +102,18 @@ services:
   
 
 volumes:
-  wordpress:
+  WP:
     driver: local
     driver_opts:
       device: /home/hbouqssi/data/wp
-      o: bind
       type: none
-  mariadb:
+      o: bind
+  DB:
     driver: local
     driver_opts:
       device: /home/hbouqssi/data/db
-      o: bind
       type: none
+      o: bind
 
 networks:
   inception:
