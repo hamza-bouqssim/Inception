@@ -1,5 +1,4 @@
 #!/bin/bash
-# sleep 5
 sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/' /etc/php/7.3/fpm/pool.d/www.conf
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
@@ -21,7 +20,6 @@ wp config set DB_HOST "mariadb" --allow-root
 wp config set WP_REDIS_HOST "redis" --allow-root
 wp config set WP_REDIS_PORT "6379" --allow-root
 wp config set WP_CACHE "true" --allow-root
-# wp config set --allow-root WP_CACHE_KEY_SALT $DOMAIN_NAME
 wp core install  --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --allow-root
 wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
 wp plugin install redis-cache --activate --allow-root

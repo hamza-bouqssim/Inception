@@ -9,4 +9,3 @@ RUN chmod +x /script.sh
 EXPOSE 8080
 
 ENTRYPOINT [ "/script.sh" ]
-# CMD [ "php", "-S" ,"0.0.0.0:8080", "/var/www/html/adminer.php" ]
