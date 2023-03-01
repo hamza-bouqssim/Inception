@@ -1,4 +1,4 @@
-FILE=/home/hamza/Desktop/Inception/srcs/docker-compose.yml
+FILE=/home/hbouqssi/Desktop/Inception/srcs/docker-compose.yml
 
 up:
 	mkdir -p /home/hbouqssi/data/wp
@@ -14,9 +14,10 @@ ps:
 img:
 	docker images
 
+clean: down
+		docker volume rm srcs_WP srcs_DB
 fclean:	down
 		docker system prune -fa
-		docker volume rm srcs_mariadb_v srcs_wordpress_v
-		rm -Rf /home/hbouqssi/data/db
-		rm -Rf /home/hbouqssi/data/wp
-		rm -rf /home/hbouqssi/data
+		sudo rm -Rf /home/hbouqssi/data/db
+		sudo rm -Rf /home/hbouqssi/data/wp
+		sudo rm -rf /home/hbouqssi/data
