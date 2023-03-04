@@ -7,8 +7,6 @@ services:
     container_name: mariadb
     image: mariadb:inception
     restart: always
-    ports:
-      - '3306'
     volumes:
       - DB:/var/lib/mysql
     env_file:
@@ -37,8 +35,6 @@ services:
     build: ./requirements/wordpress
     container_name: wordpress
     image: wordpress:inception
-    ports:
-      - '9000'
     depends_on:
       - mariadb
     restart: always
